@@ -19,8 +19,7 @@ class Post {
         DateTime $publishedAt =null,
         string $author = null,
         string $image = null,
-    )
-    {
+    ){
         $this->title = $title;
         $this->content = $content;
         $this->createdAt = $createdAt;
@@ -52,22 +51,28 @@ class Post {
     }
 
     //setters
-    public function setTitle(string $title) : void{
+    public function setTitle(string $title) : self{
         $this->title = $title;
+        return $this;
     }
-    public function setContent(string $content) : void{
+    public function setContent(string $content) : self{
         $this->content = $content;
+        return $this;
     }
-    public function setCreatedAt(\DateTime $createdAt) : void{
+    public function setCreatedAt(\DateTime $createdAt) : self{
         $this->createdAt = $createdAt;
+        return $this;
     }
-    public function setPublishedAt(\DateTime $publishedAt) : void{
+    public function setPublishedAt(\DateTime $publishedAt) : self{
         $this->publishedAt = $publishedAt;
+        return $this;
     }
-    public function setAuthor(string $author) : void{
+    public function setAuthor(string $author) : self{
         $this->author = $author;
+        return $this;
     }
-    public function setImage(string $image) : void{
+    public function setImage(string $image) : self{
         $this->image = $image ;
+        return $this;
     }
 }

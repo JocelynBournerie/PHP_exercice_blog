@@ -19,5 +19,6 @@ class Visitor extends User{
     }
     public function setDateOfBirth(DateTime $dateOfBirth){
         $this->dateOfBirth=$dateOfBirth;
+        return $this;
     }
 }

@@ -19,19 +19,23 @@ class Author extends User{
         return $this->posts;
     }
 
-    public function setDescription($description) : void{
+    public function setDescription($description) : self{
         $this->description = $description;
+        return $this;
     }
 
-    public function setJob($job) : void{
+    public function setJob($job) : self{
         $this->job = $job;
+        return $this;
     }
 
     // public function setPosts(array $posts) : void{
     //     $this->posts = $posts;
     // }
 
-    public function addpost(Post $post):void {
-        array_push($this->posts,$post);
+    public function addpost(Post $post):self {
+        // array_push($this->posts,$post);
+        $this->posts[]=$post;
+        return $this;
     }
 }
