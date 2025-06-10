@@ -12,22 +12,7 @@ class Post {
     private $author;
     private $image;
 
-    public function __construct(
-        string $title, 
-        string $content, 
-        DateTime $createdAt =null, 
-        DateTime $publishedAt =null,
-        string $author = null,
-        string $image = null,
-    ){
-        $this->title = $title;
-        $this->content = $content;
-        $this->createdAt = $createdAt;
-        $this->publishedAt = $publishedAt;
-        $this->author = $author;
-        $this->image = $image;
-
-        
+    public function __construct(){  
     }
 
     //getters

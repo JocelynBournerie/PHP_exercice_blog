@@ -3,10 +3,18 @@
 
 require_once './vendor/autoload.php';
 
+use App\Controller\PostContoller;
 use App\Entity\Author;
 use App\Entity\Post;
 use App\Entity\Visitor;
 use App\repository\PdoConnection;
+
+//recup l'url
+$url = $_SERVER['PATH_INFO'];
+if (str_contains($url,'articles')){
+        $postController = new PostContoller();
+        $postController->list();
+}
 
 //Se connecter a la bdd
 $dbConnection = PdoConnection::getConnection();
