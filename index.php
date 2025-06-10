@@ -6,18 +6,11 @@ require_once './vendor/autoload.php';
 use App\Entity\Author;
 use App\Entity\Post;
 use App\Entity\Visitor;
+use App\repository\PdoConnection;
 
 //Se connecter a la bdd
-$dbConnection = new PDO (
-    "mysql:host=localhost;dbname=blog;charset=UTF8",
-    "root",
-    "",
-    [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]
-);
+$dbConnection = PdoConnection::getConnection();
 $post = $dbConnection->query('SELECT * FROM post')->fetchAll();
-var_dump($post);
 
 //créer un auteur
 //creer trois articles associés à l'auteur
@@ -44,19 +37,16 @@ $author->addpost($article3);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body>    <ol><?php foreach ($post as $post) {
+                ?>
+        <li>
+<h2><?= $post['title'] ?></h2>
+        <span><?= $post['content'] ?></span>
+        <span><?= $post['author_id'] ?></span>
+        <span><?= date_format(new DateTime($post['created_at']), "d/m/y") ?></span>
+        </li><?php }
+                ?>
+    </ol>
     </body>
-    <?php foreach ($post as $post) {
-        ?>
-    <article
-     >
-            <h2><?= $post['title'] ?></h2>
-        <p><?= $post['content'] ?></p>
-        <p><?= $post['author_id'] ?></p>
-        <span><?= date_format(new DateTime($post['created_at']),"d/m/y")?></span>
-        <hr>
-    </article >
-    <?php } 
-    ?>
 </html>
 </pre>
