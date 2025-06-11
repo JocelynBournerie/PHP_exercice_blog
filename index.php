@@ -1,8 +1,9 @@
-<pre>
+
 <?php
 
 require_once './vendor/autoload.php';
 
+use App\Controller\AuthorController;
 use App\Controller\PostContoller;
 use App\Entity\Author;
 use App\Entity\Post;
@@ -10,51 +11,23 @@ use App\Entity\Visitor;
 use App\repository\PdoConnection;
 
 //recup l'url
-$url = $_SERVER['PATH_INFO'];
+$url = $_SERVER['REQUEST_URI'];
+var_dump($url);
+
 if (str_contains($url,'articles')){
         $postController = new PostContoller();
         $postController->list();
 }
+if(str_contains($url,'authors')){
+        $authorController = new AuthorController();
+        $authorController->list();
+}
 
-//Se connecter a la bdd
-$dbConnection = PdoConnection::getConnection();
-$post = $dbConnection->query('SELECT * FROM post')->fetchAll();
-
-//créer un auteur
-//creer trois articles associés à l'auteur
-//Afficher (via html les 3 articles)
-
-$article1 = new Post("bonjour", "c'est un post pour dire bonnjour", new DateTime(), null, 'Jocelyn');
-$article2 = new Post("Au revoir", "c'est un post pour dire au revoir", new DateTime(), null, 'Jocelyn');
-$article3 = new Post("coucou", "c'est un post pour dire coucou", new DateTime(), null, 'Jocelyn');
-
-$author = new Author();
-$author->setFirstname("Jocelyn");
-$author->setLastname("Bournerie");
-$author->setPseudo('Jojolafrite');
-$author->addpost($article1);
-$author->addpost($article2);
-$author->addpost($article3);
+//Ajouter quelques auteurs dans la base de données
+//Créer un controller pour gérer les auteurs (AuthorController)
+//Créer la méthode list pour gérer la route "/authors" qui affiche la list des auteurs
+//Créer le AuthorRepository et la méthode list pour récupérer la liste des auteurs
+//Créer et renvoyer la view affichant la liste des auteurs
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>    <ol><?php foreach ($post as $post) {
-                ?>
-        <li>
-<h2><?= $post['title'] ?></h2>
-        <span><?= $post['content'] ?></span>
-        <span><?= $post['author_id'] ?></span>
-        <span><?= date_format(new DateTime($post['created_at']), "d/m/y") ?></span>
-        </li><?php }
-                ?>
-    </ol>
-    </body>
-</html>
-</pre>

@@ -60,4 +60,14 @@ class Post {
         $this->image = $image ;
         return $this;
     }
+
+    public function __set($name, $value)
+    {
+        if($name==='created_at'){
+            $this->setCreatedAt(new DateTime($value));
+        }
+        if($name==='published_at'){
+            $this->setPublishedAt(new DateTime($value));
+        }
+    }
 }
