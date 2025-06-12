@@ -11,5 +11,9 @@
             "email": "jocelyn.bournerie@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.21",
+        "doctrine/orm": "^3.3",
+        "symfony/cache": "^7.3"
+    }
 }

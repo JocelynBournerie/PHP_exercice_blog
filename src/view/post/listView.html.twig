@@ -1,0 +1,14 @@
+{% extends "/base.html.twig" %}
+{% block body %}
+<h1>Mes articles</h1>
+    <ol>
+        {% for post in posts %}
+        <li>
+            <p>Titre : {{post.title}}</p>
+            <p>Contenu : {{post.content}}</p>
+            <p>Créé le : {{post.createdAt|date('d/m/Y')}}</p>
+            <p>Par : {{post.author.firstname ~' '~ post.author.lastname}}</p>
+        </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

@@ -2,29 +2,48 @@
 
 namespace App\Entity;
 
-class Author extends User{
-    private string $description;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+
+
+class Author extends User
+{
+
+    
+    #[ORM\Column(type: 'string')]
     private string $job;
+
+    #[ORM\Column(type: 'text')]
+    private string $description;
+
+    
     private array $posts = [];
 
-    public function getDescription() : string{
+
+    public function getDescription(): string
+    {
         return $this->description;
     }
 
-    public function getJob() : string{
+    public function getJob(): string
+    {
         return $this->job;
     }
 
-    public function getPosts() : array{
+    public function getPosts(): array
+    {
         return $this->posts;
     }
 
-    public function setDescription($description) : self{
+    public function setDescription($description): self
+    {
         $this->description = $description;
         return $this;
     }
 
-    public function setJob($job) : self{
+    public function setJob($job): self
+    {
         $this->job = $job;
         return $this;
     }
@@ -33,9 +52,10 @@ class Author extends User{
     //     $this->posts = $posts;
     // }
 
-    public function addpost(Post $post):self {
+    public function addpost(Post $post): self
+    {
         // array_push($this->posts,$post);
-        $this->posts[]=$post;
+        $this->posts[] = $post;
         return $this;
     }
 }

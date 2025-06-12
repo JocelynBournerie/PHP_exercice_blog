@@ -9,10 +9,11 @@ use App\Entity\Author;
 use App\Entity\Post;
 use App\Entity\Visitor;
 use App\repository\PdoConnection;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 //recup l'url
 $url = $_SERVER['REQUEST_URI'];
-var_dump($url);
 
 if (str_contains($url,'articles')){
         $postController = new PostContoller();
@@ -23,11 +24,10 @@ if(str_contains($url,'authors')){
         $authorController->list();
 }
 
-//Ajouter quelques auteurs dans la base de données
-//Créer un controller pour gérer les auteurs (AuthorController)
-//Créer la méthode list pour gérer la route "/authors" qui affiche la list des auteurs
-//Créer le AuthorRepository et la méthode list pour récupérer la liste des auteurs
-//Créer et renvoyer la view affichant la liste des auteurs
+//ajouter 3 users dans la BDD
+//ajouter 3 authors dans la BDD
+//Modifier le code dans PostController pour récupérer les données 
+//Modifier le code dans PostRepository pour récupérer les données 
 
 ?>
 
