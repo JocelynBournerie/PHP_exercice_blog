@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<form action="articles?action=new" method="POST">
+		<div>
+			<label for="title">Titre :</label>
+			<input type="text" name="title" id="title">
+		</div>
+		<div>
+			<label for="content">Contenu :</label>
+			<textarea name="content" id="content"></textarea>
+		</div>
+
+
+		<div>
+			<label for="authors">Auteur :
+			</label>
+			<select name="author_id" id="author_id">
+				<option value="" selected disabled>choisir un auteur</option>
+				{% for author in authors %}
+					<option value="{{author.id}}">{{author.firstname ~ ' ' ~ author.lastname}}</option>
+				{% endfor %}
+			</select>
+		</div>
+
+		<button type="submit">Ajouter</button>
+
+	</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h2>Auteur n°{{author.id}}</h2>
+	<p>
+		{{author.firstname}}
+		{{author.lastname}}
+	</p>
+	<ol>
+		{% for post in author.posts %}
+			<li>
+				<a href="/blog/articles?id={{post.id}}">
+					<p>Titre :
+						{{post.title}}
+					</p>
+				</a>
+				<p>Publié le :
+					{{post.publishedAt|date('d/m/Y')}}</p>
+			</li>
+		{% endfor %}
+	</ol>
+{% endblock %}

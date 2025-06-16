@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<form action="authors?action=new" method="POST">
+    <div>
+        <label for="firstname">Prénom :</label>
+        <input type="text" name="firstname" id="firstname">
+    </div>
+    <div>
+        <label for="lastname">Nom :</label>
+        <input type="text" name="lastname" id="lastname">
+    </div>
+    <div>
+        <label for="mail">Mail :</label>
+        <input type="text" name="mail" id="mail">
+    </div>
+    <div>
+        <label for="job">Job : </label>
+        <select name="job" id="job">
+            <option value="" selected disabled>choisir une option</option>
+            <option value="Correcteur">Correcteur</option>
+            <option value="Rédacteur">Rédacteur</option>
+            <option value="Rédacteur en chef">Rédacteur en chef</option>
+        </select>
+    </div>
+    
+    <button type="submit">Ajouter</button>
+
+</form>
+{% endblock %}

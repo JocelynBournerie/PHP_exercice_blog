@@ -10,7 +10,7 @@ class PostRepository
 {
     private EntityManager $entityManager;
 
-    public function __construct()
+    public function __construct(EntityManager $entityManager)
     {
         require_once dirname(__DIR__, 2) . '/config/bootstrap.php';
         $this->entityManager = $entityManager;
@@ -25,12 +25,28 @@ class PostRepository
         return $posts;
     }
 
-    public function findAllWithAuthor() {
+    public function findAllWithAuthor()
+    {
         $qb = $this->entityManager->createQueryBuilder();
         $qb
-            ->select(['post','author'])
-            ->from(Post::class,'post')
-            ->leftJoin('post.author','author');
+            ->select(['post', 'author'])
+            ->from(Post::class, 'post')
+            ->leftJoin('post.author', 'author');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findOneWithId($id)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb
+            ->select(['post', 'author'])
+            ->from(Post::class, 'post')
+            ->leftJoin('post.author', 'author')
+            ->where('post.id=:id')
+            ->setParameter('id', $id);
+        // echo '<pre>';
+        // var_dump($qb);
+
         return $qb->getQuery()->getResult();
     }
 }

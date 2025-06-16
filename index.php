@@ -15,19 +15,42 @@ use Twig\Loader\FilesystemLoader;
 //recup l'url
 $url = $_SERVER['REQUEST_URI'];
 
-if (str_contains($url,'articles')){
+
+
+if(str_contains($url,'articles') && array_key_exists('action',$_REQUEST) && $_REQUEST['action']==='new'){
+        $authorController = new PostContoller();
+        $authorController->new();
+}
+
+if (str_contains($url,'articles') && array_key_exists('id',$_REQUEST)){
+        $postController = new PostContoller();
+        $postController->showArticle();
+}
+
+if (str_contains($url,'articles') && !$_REQUEST){
         $postController = new PostContoller();
         $postController->list();
 }
-if(str_contains($url,'authors')){
+
+if(str_contains($url,'authors') && array_key_exists('action',$_REQUEST) && $_REQUEST['action']==='new'){
         $authorController = new AuthorController();
-        $authorController->list();
+        $authorController->new();
 }
 
-//ajouter 3 users dans la BDD
-//ajouter 3 authors dans la BDD
-//Modifier le code dans PostController pour récupérer les données 
-//Modifier le code dans PostRepository pour récupérer les données 
+if(str_contains($url,'authors') && array_key_exists('id',$_REQUEST)){
+        $authorController = new AuthorController();
+        $authorController->show();
+}
+
+if(str_contains($url,'authors') && !$_REQUEST){
+        $authorController = new AuthorController();
+        $authorController->show();
+}
+
+// Créer le lien vers le formulaire
+// Afficher le formulaire
+// Envoyer et traiter le formulaire
+// Rediger vers la page de liste des entités
 
 ?>
 

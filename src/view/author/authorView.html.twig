@@ -1,11 +1,12 @@
 {% extends "base.html.twig" %}
 {% block body %}
-<h1>Les auteurs</h1>
+<h1>Les auteurs <span><a href="authors?action=new">Ajouter un auteur</a></span></h1>
     <ol>
         {% for author in authors %}
-            <li>
+            <li><a href={{"?id=" ~ author.id}}>
                 {{author.firstname}}
                 {{author.lastname}}
+                </a>
             </li> 
         {% endfor %}
     </ol>

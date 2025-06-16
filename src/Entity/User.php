@@ -26,13 +26,13 @@ class User
     #[ORM\Column(type: 'string')]
     protected string $lastname;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable:true)]
     protected string $pseudo;
 
     #[ORM\Column(type: 'string')]
     protected string $email;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable:true)]
     protected string $password;
 
     public function getId()

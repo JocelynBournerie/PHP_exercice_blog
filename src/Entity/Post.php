@@ -27,11 +27,11 @@ class Post {
     #[ORM\Column(type:'datetime')]
     private DateTime $publishedAt;
     
-    #[ORM\Column(type:'string')]
+    #[ORM\Column(type:'string', nullable:true)]
     private $image;
     
     #[ORM\ManyToOne(targetEntity:Author::class)]
-    #[ORM\JoinColumn(name:'author_id',referencedColumnName:'id')]
+    #[ORM\JoinColumn(name:'author_id',referencedColumnName:'id',nullable:true)]
     private Author $author;
 
     public function __construct(){  

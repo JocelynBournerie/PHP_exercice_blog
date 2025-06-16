@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -14,11 +15,19 @@ class Author extends User
     #[ORM\Column(type: 'string')]
     private string $job;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'text', nullable:true)]
     private string $description;
 
-    
-    private array $posts = [];
+    #[ORM\OneToMany(
+        targetEntity:Post::class,
+        mappedBy:'author'
+        )]
+    private Collection $posts ;
+
+    public function __construct()
+    {
+        // $this->posts = new Collection();
+    }
 
 
     public function getDescription(): string
@@ -31,7 +40,7 @@ class Author extends User
         return $this->job;
     }
 
-    public function getPosts(): array
+    public function getPosts(): Collection
     {
         return $this->posts;
     }
@@ -48,14 +57,17 @@ class Author extends User
         return $this;
     }
 
-    // public function setPosts(array $posts) : void{
-    //     $this->posts = $posts;
-    // }
-
     public function addpost(Post $post): self
     {
-        // array_push($this->posts,$post);
-        $this->posts[] = $post;
+        if(!$this->posts->contains($post)){
+            $this->posts->add($post);
+        }
+        return $this;
+    }
+
+    public function removePost(Post $post):self
+    {
+        $this->posts->removeElement($post);
         return $this;
     }
 }
